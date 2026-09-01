@@ -3,25 +3,22 @@ services:
     image: postgres:17
     container_name: langgraph-postgres-2
     ports:
-       - "5443:5432"
+      - "5443:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: postgres
     volumes:
-      - pgdata:/var/lib/postgresql/data # for dev
+      - pgdata:/var/lib/postgresql/data
 
-  chroma:
-    image: chromadb/chroma
-    container_name: chroma
+  qdrant:
+    image: qdrant/qdrant:v1.19.0
+    container_name: qdrant
     ports:
-      - "8000:8000"
-    # volumes:
-    #   - ./data/vectordb:/data # for dev
+      - "6333:6333"
+      - "6334:6334"
     volumes:
-      - chroma-data:/data
-
-
+      - qdrant-data:/qdrant/storage
 
   chatbot:
     build:
@@ -31,13 +28,13 @@ services:
     ports:
       - "7860:7860"
     volumes:
-      - .:/app                   # Full access to the codebase for dev
+      - .:/app
     env_file:
       - .env
     depends_on:
       - postgres
-      - chroma
+      - qdrant
 
 volumes:
   pgdata:
-  chroma-data: # only if you are using chroma-data:/data as the Docker-managed volume
+  qdrant-data:
