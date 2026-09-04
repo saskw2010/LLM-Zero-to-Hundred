@@ -5,7 +5,7 @@
 </div>
 This repository showcases various applications of LLM chatbots and provides comprehensive insights into established methodologies for training and fine-tuning Language Models.
 
-[![YouTube Tutorial](https://img.shields.io/badge/YouTube-Watch%20Tutorial-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/@airoundtable)
+It is based on [Farzad-R/LLM-Zero-to-Hundred](https://github.com/Farzad-R/LLM-Zero-to-Hundred) and extends it with my own improvements — see [What's different in this repository](#whats-different-in-this-repository) and [Credits](#credits).
 
 ### List of projects:
 - [x] [Hidden-Technical-Debt-Behind-AI-Agents](#Hidden-Technical-Debt-Behind-AI-Agents)
@@ -37,6 +37,14 @@ Project-folder
 ```
 NOTE: This is the general structure of the projects, however there might be small changes due to the specific needs of each project.
 
+## What's different in this repository
+`mostafa-dev` is the active development branch. Compared to the original baseline, this repository adds:
+
+- **ChromaDB → Qdrant migration** in [Hidden-Technical-Debt-Behind-AI-Agents](#Hidden-Technical-Debt-Behind-AI-Agents): the ChromaDB runtime was replaced with Qdrant across the docker-compose setup, vectordb preparation scripts, and config loading.
+- **Security hardening**: SSRF guards on request endpoints (loopback-only pinning for the on-prem LLM service, public-URL-only image fetching) and confinement of file-output paths to the project tree.
+- **Automated deployment**: a GitHub Actions workflow deploys this site to GitHub Pages on every push to the development branch.
+- **All links updated** to point to this repository.
+
 ## Project description:
 <!-- ====================================== -->
 <!-- Hidden Technical Debt behind AI Agents -->
@@ -58,7 +66,7 @@ What This Project Covers:
 <!-- ====================================== -->
 <!-- Advanced Multimodal Chatbot -->
 <!-- ====================================== -->
-<a id="HUMAIN: Advanced Multimodal, Multitask Chatbot"></a>
+<a id="Multimodal-ChatBot"></a>
 <h3><a style=" white-space:nowrap; " href="https://github.com/saskw2010/LLM-Zero-to-Hundred/tree/master/HUMAIN-advanced-multimodal-chatbot"><b>Advanced Multimodal Chatbot:</b></a></h3>
 <p>
 Features:
@@ -217,3 +225,9 @@ Ex:
 cd WebRAGQuery
 pip install -r requirements.txt
 ```
+
+## Credits
+This repository is built on the original work of [Farzad-R](https://github.com/Farzad-R):
+
+- Original repository: [Farzad-R/LLM-Zero-to-Hundred](https://github.com/Farzad-R/LLM-Zero-to-Hundred)
+- The YouTube walkthrough videos linked in each project section are from the [original author's channel](https://www.youtube.com/@airoundtable).
