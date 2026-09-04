@@ -17,6 +17,7 @@ import json
 import os
 import shutil
 import warnings
+from pathlib import Path
 
 import torch
 
@@ -75,8 +76,14 @@ def read_json(path):
         return json.load(f)
 
 
-def write_json(text, path):
-    with open(path, "w") as f:
+def write_json(text, path, base_dir):
+    base = Path(base_dir).resolve()
+    resolved = Path(path).resolve()
+    try:
+        resolved.relative_to(base)
+    except ValueError as exc:
+        raise ValueError(f"Output path escapes the model output directory: {path}") from exc
+    with resolved.open("w") as f:
         json.dump(text, f)
 
 
@@ -246,7 +253,7 @@ def write_model(model_path, input_base_path, model_size, tokenizer_path=None, sa
 
     # Write configs
     index_dict["metadata"] = {"total_size": param_count * 2}
-    write_json(index_dict, os.path.join(tmp_model_path, "pytorch_model.bin.index.json"))
+    write_json(index_dict, os.path.join(tmp_model_path, "pytorch_model.bin.index.json"), model_path)
     ffn_dim_multiplier = params["ffn_dim_multiplier"] if "ffn_dim_multiplier" in params else 1
     multiple_of = params["multiple_of"] if "multiple_of" in params else 256
     config = LlamaConfig(

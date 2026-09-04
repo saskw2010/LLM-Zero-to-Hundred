@@ -9,7 +9,10 @@ import html
 from utils.load_config import LoadConfig
 from langchain.embeddings import HuggingFaceEmbeddings
 import requests
-import torch
+import socket
+import ipaddress
+import urllib.parse
+
 FLASK_APP_ENDPOINT = "http://127.0.0.1:8888/generate_text"
 
 APPCFG = LoadConfig()
@@ -93,7 +96,32 @@ class ChatBot:
             "top_k": top_k,
             "top_p": top_p
         }
-        response = requests.post(FLASK_APP_ENDPOINT, json=data)
+        # SSRF guard for the on-prem Gemma service: it is intentionally
+        # loopback-only, so validate the scheme, resolve the host, require a
+        # loopback address, pin the request to that IP, and disable redirects.
+        parsed_endpoint = urllib.parse.urlsplit(FLASK_APP_ENDPOINT)
+        if parsed_endpoint.scheme not in ("http", "https") or not parsed_endpoint.hostname:
+            raise ValueError(f"Unsupported LLM endpoint: {FLASK_APP_ENDPOINT!r}")
+        try:
+            endpoint_addrinfos = socket.getaddrinfo(
+                parsed_endpoint.hostname,
+                parsed_endpoint.port or (443 if parsed_endpoint.scheme == "https" else 80))
+        except socket.gaierror as exc:
+            raise ValueError(
+                f"Cannot resolve LLM endpoint host: {parsed_endpoint.hostname!r}") from exc
+        endpoint_addresses = sorted({info[4][0] for info in endpoint_addrinfos})
+        if not endpoint_addresses:
+            raise ValueError("LLM endpoint resolved to no addresses")
+        pinned_ip = endpoint_addresses[0]
+        if not ipaddress.ip_address(pinned_ip).is_loopback:
+            raise ValueError(
+                f"LLM endpoint must be a loopback service: {parsed_endpoint.hostname!r}")
+        endpoint_netloc = f"[{pinned_ip}]" if ":" in pinned_ip else pinned_ip
+        if parsed_endpoint.port:
+            endpoint_netloc += f":{parsed_endpoint.port}"
+        validated_endpoint = urllib.parse.urlunsplit(
+            (parsed_endpoint.scheme, endpoint_netloc, parsed_endpoint.path, parsed_endpoint.query, ""))
+        response = requests.post(validated_endpoint, json=data, allow_redirects=False)
         # print(response.text)
         response_json = response.json()
 

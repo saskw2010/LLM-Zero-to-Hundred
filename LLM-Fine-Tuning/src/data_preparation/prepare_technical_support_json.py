@@ -1,6 +1,7 @@
 import fitz  # install PyMuPDF
 import re
 import json
+from pathlib import Path
 from pyprojroot import here
 
 
@@ -35,8 +36,15 @@ def extract_qa_from_customer_support_pdf(pdf_path: str, output_json_path: str) -
                 # Create a dictionary for each question-answer pair
                 qa_dict = {"question": question, "answer": answer}
                 qa_list.append(qa_dict)
-    # Save the collected Q&A pairs to a JSON file
-    with open(output_json_path, "w", encoding="utf-8") as json_file:
+    # Save the collected Q&A pairs to a JSON file.
+    # Path-traversal guard: resolve the path and confine it to the project tree.
+    project_root = Path(__file__).resolve().parent.parent.parent
+    resolved_output = Path(output_json_path).resolve()
+    try:
+        resolved_output.relative_to(project_root)
+    except ValueError as exc:
+        raise ValueError(f"Output path escapes the project directory: {output_json_path}") from exc
+    with resolved_output.open("w", encoding="utf-8") as json_file:
         json.dump(qa_list, json_file, ensure_ascii=False, indent=2)
 
     print(f"Number of extracted Q&As: {len(qa_list)}")
@@ -48,7 +56,7 @@ if __name__ == "__main__":
     import yaml
     from pyprojroot import here
     with open(here("configs/config.yml")) as cfg:
-        app_config = yaml.load(cfg, Loader=yaml.FullLoader)
+        app_config = yaml.safe_load(cfg)
 
     technical_support_pdf_dir = here(
         app_config["raw_data_dir"]["technical_support_pdf_dir"])

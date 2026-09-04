@@ -8,6 +8,9 @@ import torch
 from PIL import Image
 import requests
 from io import BytesIO
+import ipaddress
+import socket
+import urllib.parse
 
 
 class LLaVAChatBot:
@@ -51,7 +54,23 @@ class LLaVAChatBot:
     def setup_image(self, img_path: str) -> None:
         """Load and process the image."""
         if img_path.startswith('http') or img_path.startswith('https'):
-            response = requests.get(img_path)
+            # SSRF guard: allow only public http(s) URLs. Resolve the host and
+            # refuse loopback/private/link-local/reserved addresses, and keep
+            # redirects off so the response can't bounce to an internal host.
+            parsed = urllib.parse.urlsplit(img_path)
+            if parsed.scheme not in ('http', 'https') or not parsed.hostname:
+                raise ValueError(f"Unsupported image URL: {img_path!r}")
+            try:
+                addrinfos = socket.getaddrinfo(parsed.hostname, None)
+            except socket.gaierror as exc:
+                raise ValueError(f"Cannot resolve image URL host: {parsed.hostname!r}") from exc
+            for _, _, _, _, sockaddr in addrinfos:
+                ip = ipaddress.ip_address(sockaddr[0])
+                if (ip.is_loopback or ip.is_private or ip.is_link_local
+                        or ip.is_reserved or ip.is_multicast or ip.is_unspecified):
+                    raise ValueError(
+                        f"Refusing to fetch images from a non-public address: {parsed.hostname!r}")
+            response = requests.get(img_path, allow_redirects=False)
             self.conv_img = Image.open(
                 BytesIO(response.content)).convert('RGB')
         else:
