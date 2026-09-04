@@ -13,7 +13,7 @@ This repository showcases various applications of LLM chatbots and provides comp
 - [x] [RAG-GPT](#RAG-GPT)
 - [x] [WebRAGQuery](#WebRAGQuery)
 - [x] [LLM Full Finetuning](#Fine-tuning-LLMs)
-- [x] [RAG-Master LLamaindex vs Langchain](RAGMaster)
+- [x] [RAG-Master LLamaindex vs Langchain](#RAGMaster)
 - [x] [open-source-RAG-GEMMA](#Open-Source-RAG-GEMMA)
 - [x] [HUMAIN: Advanced Multimodal, Multitask Chatbot](#Multimodal-ChatBot)
 
@@ -35,14 +35,14 @@ Project-folder
   |   └── utils           <- Contains all the necesssary project's modules. 
   └── images              <- Contains all the images used in the user interface and the README file. 
 ```
-NOTE: This is the general structure of the projects, however there might be small changes duo to the specific needs of each project.
+NOTE: This is the general structure of the projects, however there might be small changes due to the specific needs of each project.
 
 ## Project description:
 <!-- ====================================== -->
 <!-- Hidden Technical Debt behind AI Agents -->
 <!-- ====================================== -->
 <a id="Hidden-Technical-Debt-Behind-AI-Agents"></a>
-<h3><a style=" white-space:nowrap; " href="https://github.com/Farzad-R/LLM-Zero-to-Hundred/tree/master/Hidden-Technical-Debt-Behind-AI-Agents"><b>Advanced Multimodal Chatbot:</b></a></h3>
+<h3><a style=" white-space:nowrap; " href="https://github.com/saskw2010/LLM-Zero-to-Hundred/tree/master/Hidden-Technical-Debt-Behind-AI-Agents"><b>Hidden Technical Debt Behind AI Agents:</b></a></h3>
 <p>
 What This Project Covers:
 
@@ -59,7 +59,7 @@ What This Project Covers:
 <!-- Advanced Multimodal Chatbot -->
 <!-- ====================================== -->
 <a id="HUMAIN: Advanced Multimodal, Multitask Chatbot"></a>
-<h3><a style=" white-space:nowrap; " href="https://github.com/Farzad-R/LLM-Zero-to-Hundred/tree/master/HUMAIN-advanced-multimodal-chatbot"><b>Advanced Multimodal Chatbot:</b></a></h3>
+<h3><a style=" white-space:nowrap; " href="https://github.com/saskw2010/LLM-Zero-to-Hundred/tree/master/HUMAIN-advanced-multimodal-chatbot"><b>Advanced Multimodal Chatbot:</b></a></h3>
 <p>
 Features:
 
@@ -83,7 +83,7 @@ NOTE: This chatbot was built on top of RAG-GPT and WebRAGQuery projects.
 <!-- Open-Source-RAG-GEMMA -->
 <!-- ====================================== -->
 <a id="Open-Source-RAG-GEMMA"></a>
-<h3><a style=" white-space:nowrap; " href="https://github.com/Farzad-R/LLM-Zero-to-Hundred/tree/master/Open-Source-RAG-GEMMA"><b>Open-Source-RAG-GEMMA:</b></a></h3>
+<h3><a style=" white-space:nowrap; " href="https://github.com/saskw2010/LLM-Zero-to-Hundred/tree/master/Open-Source-RAG-GEMMA"><b>Open-Source-RAG-GEMMA:</b></a></h3>
 <p>
 In this project, I demonstrate how an open source LLM can be deployed on-prem. For that, I took RAG-GPT project and convert it into a fully open source RAG chatbot. The open source chatbot is designed using Google Gemma7B LLm and BAAI/bge-large-en as the embedding model.
 
@@ -92,7 +92,7 @@ In this project, I demonstrate how an open source LLM can be deployed on-prem. F
 <!-- RAGMaster -->
 <!-- ====================================== -->
 <a id="RAGMaster"></a>
-<h3><a style=" white-space:nowrap; " href="https://github.com/Farzad-R/LLM-Zero-to-Hundred/tree/master/RAGMaster-LlamaIndex-vs-Langchain"><b>RAGMaster-LlamaIndex-vs-Langchain:</b></a></h3>
+<h3><a style=" white-space:nowrap; " href="https://github.com/saskw2010/LLM-Zero-to-Hundred/tree/master/RAGMaster-LlamaIndex-vs-Langchain"><b>RAGMaster-LlamaIndex-vs-Langchain:</b></a></h3>
 <p>
 In this project, I compare the performance of `5` famous RAG techniques which have been proposed by Langchain and Llama-index. The test is being done on `40` questions on `5` different documents. Moreover, the projects provides `2` separate RAG chatbots that offer `8` RAG techniques from these two frameworks.
 
@@ -103,7 +103,7 @@ In this project, I compare the performance of `5` famous RAG techniques which ha
 <!-- ====================================== -->
 <a id="Fine-tuning-LLMs"></a>
 
-<h3><a style=" white-space:nowrap; " href="https://github.com/Farzad-R/LLM-Zero-to-Hundred/tree/master/LLM-Fine-Tuning"><b>Fine-tuning LLMs:</b></a></h3>
+<h3><a style=" white-space:nowrap; " href="https://github.com/saskw2010/LLM-Zero-to-Hundred/tree/master/LLM-Fine-Tuning"><b>Fine-tuning LLMs:</b></a></h3>
 <p>
 In this project, we use a fictional company called Cubetriangle and design the pipeline to process its raw data, finetune `3` large language models (LLMs) on it, and design a chatbot using the best model.
 
@@ -116,7 +116,7 @@ In this project, we use a fictional company called Cubetriangle and design the p
 <!-- WebGPT -->
 <!-- ====================================== -->
 <a id="WebGPT"></a>
-<h3><a style=" white-space:nowrap; " href="https://github.com/Farzad-R/LLM-Zero-to-Hundred/tree/master/WebGPT"><b>WebGPT:</b></a></h3>
+<h3><a style=" white-space:nowrap; " href="https://github.com/saskw2010/LLM-Zero-to-Hundred/tree/master/WebGPT"><b>WebGPT:</b></a></h3>
 <p>
 WebGPT is a powerful tool enabling users to pose questions that require internet searches. Leveraging GPT models:
 
@@ -135,7 +135,7 @@ WebGPT is a powerful tool enabling users to pose questions that require internet
 <!-- RAG-GPT -->
 <!-- ====================================== -->
 <a id="RAG-GPT"></a>
-<h3><a style=" white-space:nowrap; " href="https://github.com/Farzad-R/LLM-Zero-to-Hundred/tree/master/RAG-GPT"><b>RAG-GPT:</b></a></h3>
+<h3><a style=" white-space:nowrap; " href="https://github.com/saskw2010/LLM-Zero-to-Hundred/tree/master/RAG-GPT"><b>RAG-GPT:</b></a></h3>
 <p>
 RAG-GPT is a chatbot that enables you to chat with your documents (PDFs and Doc). The chatbot offers versatile usage through three distinct methods:
 
@@ -151,7 +151,7 @@ RAG-GPT is a chatbot that enables you to chat with your documents (PDFs and Doc)
 <!-- WebRAGQuery -->
 <!-- ====================================== -->
 <a id="WebRAGQuery"></a>
-<a style=" white-space:nowrap; " href="https://github.com/Farzad-R/LLM-Zero-to-Hundred/tree/master/WebRAGQuery"><b>WebRAGQuery: (Combining WebGPT and RAG-GPT)</b></a>
+<a style=" white-space:nowrap; " href="https://github.com/saskw2010/LLM-Zero-to-Hundred/tree/master/WebRAGQuery"><b>WebRAGQuery: (Combining WebGPT and RAG-GPT)</b></a>
 <p>
 WebRAGQuery is a chatbot that is built on the foundations of WebGPT and RAG-GPT, this project gives the users the ability to utilize the LLM's pretrained knowledge, Duckduckgo web search engine, and chatting with websites.
 
@@ -174,7 +174,7 @@ Key Features:</br>
 <!-- LLM-function-calling-tutorial -->
 <!-- -------------------------------------- -->
 <a id="LLM-function-calling-tutorial"></a>
-<h3><a style=" white-space:nowrap; " href="https://github.com/Farzad-R/LLM-Zero-to-Hundred/tree/master/tutorials/LLM-function-calling-tutorial"><b>LLM Function Calling Tutorial:</b></a></h3>
+<h3><a style=" white-space:nowrap; " href="https://github.com/saskw2010/LLM-Zero-to-Hundred/tree/master/tutorials/LLM-function-calling-tutorial"><b>LLM Function Calling Tutorial:</b></a></h3>
 <p>
 
 This project showcases the capacity of GPT models to produce executable functions in JSON format. It illustrates this capability through a practical example involving the utilization of Python with the GPT model.
@@ -187,7 +187,7 @@ Libraries: [OpenAI](https://platform.openai.com/docs/models/overview)
 <!-- LLM-function-calling-tutorial -->
 <!-- -------------------------------------- -->
 <a id="Vectorization-Tutorial"></a>
-<h3><a style=" white-space:nowrap; " href="https://github.com/Farzad-R/LLM-Zero-to-Hundred/tree/master/tutorials/vectorization_tutorial"><b>Visualizing Text Vectorization:</b></a></h3>
+<h3><a style=" white-space:nowrap; " href="https://github.com/saskw2010/LLM-Zero-to-Hundred/tree/master/tutorials/vectorization_tutorial"><b>Visualizing Text Vectorization:</b></a></h3>
 <p>
 This project provides a comprehensive visualization of text vectorization and demonstrates the power of vector search. It further explores the vectorization on both OpenAi `text-embedding-ada-002` and the open source `BAAI/bge-large-zh-v1.5` model.
 
@@ -196,14 +196,14 @@ Libraries: [OpenAI](https://platform.openai.com/docs/models/overview) - [Hugging
 **YouTube video:** [Link](https://www.youtube.com/watch?v=sxBr_afsvb0&t=454s)
 </p>
 
-**Slides:** [Link](https://github.com/Farzad-R/LLM-Zero-to-Hundred/blob/master/presentation/slides.pdf)
+**Slides:** [Link](https://github.com/saskw2010/LLM-Zero-to-Hundred/blob/master/presentation/slides.pdf)
 
 ## Running each project
 To run the projects, you will need to install the required libraries. Follow the steps below to get started:
 
 1. Clone the repository and navigate to the project directory.
 ```
-git clone https://github.com/Farzad-R/LLM-Zero-to-Hundred.git
+git clone https://github.com/saskw2010/LLM-Zero-to-Hundred.git
 cd LLM-Zero-to-Hundred
 ```
 2. Create a new virtual environment using a tool like virtualenv or conda, and activate the environment:
